@@ -93,12 +93,12 @@ public class order_pasta extends AppCompatActivity {
         registerForContextMenu(i2);
         registerForContextMenu(i3);
 
-        Bundle bundle = getIntent().getExtras();
+        Bundle b = getIntent().getExtras();
 
         if (bundle != null) {
-            String name = bundle.getString("Name");
-            String cost = bundle.getString("Cost");
-            String desc = bundle.getString("Description");
+            String name = b.getString("Name");
+            String cost = b.getString("Cost");
+            String desc = b.getString("Description");
             text1.setText(name);
             cost1.setText(cost);
             desc1.setText(desc);
