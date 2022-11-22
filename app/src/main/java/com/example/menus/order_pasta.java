@@ -95,13 +95,42 @@ public class order_pasta extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        if (bundle != null) {
+        if (b != null) {
             String name = b.getString("Name");
             String cost = b.getString("Cost");
             String desc = b.getString("Description");
-            text1.setText(name);
-            cost1.setText(cost);
-            desc1.setText(desc);
+            String id = b.getString("id");
+            switch (id){
+                case "Customize Product1":
+                    text1 = findViewById(R.id.t1);
+                    cost1 = findViewById(R.id.c1);
+                    desc1 = findViewById(R.id.d1);
+                    text1.setText(name);
+                    cost1.setText(cost);
+                    desc1.setText(desc);
+                    break;
+                case "Customize Product2":
+                    text1 = findViewById(R.id.t2);
+                    cost1 = findViewById(R.id.c2);
+                    desc1 = findViewById(R.id.d2);
+                    text1.setText(name);
+                    cost1.setText(cost);
+                    desc1.setText(desc);
+                    break;
+                case "Customize Product3":
+                    text1 = findViewById(R.id.t3);
+                    cost1 = findViewById(R.id.c3);
+                    desc1 = findViewById(R.id.d3);
+                    text1.setText(name);
+                    cost1.setText(cost);
+                    desc1.setText(desc);
+                    break;
+                default:
+                    break;
+            }
+
+
+
         }
     }
 
@@ -133,6 +162,7 @@ public class order_pasta extends AppCompatActivity {
             desc1 = findViewById(R.id.d1);
             i = new Intent(order_pasta.this, custom.class);
             bundle = new Bundle();
+            bundle.putString("id", "Customize Product1");
             bundle.putString("Name", text1.getText().toString());
             bundle.putString("Cost", cost1.getText().toString());
             bundle.putString("Description", desc1.getText().toString());
@@ -146,6 +176,7 @@ public class order_pasta extends AppCompatActivity {
             desc1 = findViewById(R.id.d2);
             i = new Intent(order_pasta.this, custom.class);
             bundle = new Bundle();
+            bundle.putString("id", "Customize Product2");
             bundle.putString("Name", text1.getText().toString());
             bundle.putString("Cost", cost1.getText().toString());
             bundle.putString("Description", desc1.getText().toString());
@@ -159,6 +190,7 @@ public class order_pasta extends AppCompatActivity {
             desc1 = findViewById(R.id.d3);
             i = new Intent(order_pasta.this, custom.class);
             bundle = new Bundle();
+            bundle.putString("id", "Customize Product3");
             bundle.putString("Name", text1.getText().toString());
             bundle.putString("Cost", cost1.getText().toString());
             bundle.putString("Description", desc1.getText().toString());

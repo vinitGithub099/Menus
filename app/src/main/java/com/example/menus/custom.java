@@ -14,6 +14,7 @@ public class custom extends AppCompatActivity {
     EditText cost1;
     EditText desc1;
     Button btn;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class custom extends AppCompatActivity {
             String name = bundle.getString("Name");
             String cost = bundle.getString("Cost");
             String desc = bundle.getString("Description");
+            id = bundle.getString("id");
             text1.setText(name);
             cost1.setText(cost);
             desc1.setText(desc);
@@ -44,6 +46,7 @@ public class custom extends AppCompatActivity {
                 b.putString("Name", text1.getText().toString());
                 b.putString("Cost", cost1.getText().toString());
                 b.putString("Description", desc1.getText().toString());
+                b.putString("id", id);
                 i.putExtras(b);
                 startActivity(i);
             }
