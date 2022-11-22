@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Menus</string>
+    <string name="channel_name">ORDER_CHANNEL</string>
+    <string name="channel_description">Order from the cart has been placed</string>
 </resources>
