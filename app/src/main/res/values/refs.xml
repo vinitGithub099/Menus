@@ -2,4 +2,5 @@
 <resources>
     <drawable name="notification_icon" />
     <drawable name="messageicon" />
+    <drawable name="ic_stat_name" />
 </resources>

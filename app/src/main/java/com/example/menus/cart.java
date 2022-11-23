@@ -1,5 +1,7 @@
 package com.example.menus;
 
+import static androidx.core.app.NotificationChannelCompat.DEFAULT_CHANNEL_ID;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
@@ -25,6 +27,7 @@ public class cart extends AppCompatActivity {
 
     private static ArrayList<Myclass> arr = new ArrayList<>();
     private Button btn;
+    final String CHANNEL_ID="channel1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class cart extends AppCompatActivity {
 
         addTotalOrderView(linearLayout);
 
+        btn = findViewById(R.id.orderBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,29 +59,30 @@ public class cart extends AppCompatActivity {
 
     }
 
-    private void addNotification() {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.messageicon) //set icon for notification
-                        .setContentTitle("Notifications Example") //set title of notification
-                        .setContentText("This is a notification message")//this is notification message
-                        .setAutoCancel(true) // makes auto cancel of notification
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT); //set priority of notification
+    void addNotification() {
+        NotificationManager nm=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Notification Example";
+            String description = "This is a Demo Notification";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            nm.createNotificationChannel(channel);
+        }
 
-
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_stat_name)
+                        .setContentTitle("Notifications Example")
+                        .setContentText("This is a test notification");
+        builder.setAutoCancel(true);
         Intent notificationIntent = new Intent(this, notfication.class);
-        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //notification message will get at NotificationView
-        notificationIntent.putExtra("message", "This is a notification message");
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+        notificationIntent.putExtra("notificationID", 123);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        nm.notify(0,builder.build());
     }
+
 
 
 
